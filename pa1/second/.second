@@ -1,0 +1,4 @@
+int main(argc*)
+{
+	printf("this is my second part of pa1");
+}

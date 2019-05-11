@@ -1,0 +1,10 @@
+Andrea Cho
+Jeffrey Ames
+Computer Architecture
+06 May 2019
+
+PA4: Caches
+
+The main data structure I used to build my cache was a two-dimensional array. First, I created an array of sets (rows), each holding an array of lines or blocks (columns). Each line contained a number of blocks, according to the given blockSize input given. I had to malloc the dimensions because the number of sets and number of blocks was dependent on the user input. In theory, the cache was always a 2D array, but if the associativity was direct or fully, I visualized a 1D array, vertical and horizontal respectively. I also used two structs in this project, a cache struct with the following properties: blocks, cacheSize, blockSize, numSets, assoc, reads, writes, misses, hits, prefetch. The second struct I created was a blocks struct, or a line, containing a valid bit and tag bit.
+
+The prefetcher is used to increase spatial locality. Whenever my prefetch cache had a “miss”, it would insert that memory block from the main memory into the cache, as well as the adjacent block (address+blockSize) because it would be more likely that the adjacent block would need to be accessed later on. Therefore, the number of hits increased with the prefetch cache. The prefetch also increased the number of memory reads. Essentially, my prefetch cache did the exact same thing as the regular cache, except when it inserted the adjacent memory block, if it was a “miss”, it would increment “reads”. So if the adjacent block was not already in the cache, the prefetch cache would account for the read of the adjacent block as well as the original block itself. 
